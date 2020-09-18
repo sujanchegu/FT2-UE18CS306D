@@ -1,0 +1,29 @@
+Name: Sujan CR
+SRN: PES1201801286
+Assignment: 1
+
+I'll describe the basic methodolgy first & will explain each function later.
+
+The tree structure is maintained as same as it was in class. The node structure is also similar except for the fact that char is replaced by a string. Now that we have a tree, I also used a stack implementation on Linked List to store all the parents/ancestor of the current node. This LinkedList is called pathtree where each node is called pathnode. So, for every node that I encounter from the input, I know exactly if the node is 
+1. Child of the preious node
+2. Sibling of the preious node
+3. Sibling to some ancestor of the previous node
+This is figured about by the number of tabs that the input string contains & the length of the linked list. 
+
+Explaining functions:
+1. make_pathnode() : Given a TreeNode, this function returns a pointer to the pathnode that is associcated to the TreeNode. The next pointer in the pathnode is initialised to NULL.
+2. make_node() : Given a string, it returns a TreeNode with the string copied & the left, right pointers initialised to NULL.
+3. init_tree() : The tree by default contains a node by the name "root". So, every node is some child of this node. To understand better, in the sample input, the immediate children of this node are ["one", "two", "three", "foour", "five"]. 
+4. init_path() : Since, the tree has a node named "root" by default, we also have a default PathNode in the Path. The "ptr" pointer points to the "root" node from tree & the next pointer is NULL.
+5. add_child_to_parent() : Given a pointer to TreeNode acting as parent & a pionter to TreeNode which acts as child, we add the child to the paernt following the GPT convention.
+6. gen_header() : Understood Easily.
+7. prologue() : Understood Easily.
+8. epilogue() : Understood easily.
+9. gen_funcs() : Given a node, we printout (generate) all the functions for its immediate children. In each child's function, we need to have a switch case involving the names of the child's children. The inner loop generates these "cases". The outer print statements are understood easily. coc stands for childofchild.
+10. gen_func_r() : Given cn(stands for current node), it calls gen_funcs on this node i.e. the functins for all the child is generated. Now, we iterate through each of its children generating functions for childrens' children. So, Now, we know if we call this function on "root" node in tree, every Treenode will have an associated function in its name exceept the "root" node.
+11. gen_root(): This function is used to generate the function for the root node of the tree. The content is same as what was in the gen_funcs() function. Except that we don't check for the node having no children. Aother change is for case 0: where instead of returning, it just exits the program. 
+12. call_root() : understood easily.
+13. main(): The important function linking the tree implementation & the Linked list implementation. Inside the while loop we also generate function declarations for all possible functions. Appropriate comments are made in the code. We first strip the \n char from the end of the node's name. nname stands for nodename. ptabs stands for previoustabs(number of tabs that the repvious node had). tabs is the number of tabs that the present node has. temp_n is the Treenode made for the current node. temp_pn stands for the Pathnode associated with the current node. follow_pn is just a pointer used to keep track of the previous pathnode when traversing PathLinkedList. The three if cases are also understood by the comments. 
+
+
+Very good indentation is followed in the outputted program too wchih makes it readable.
